@@ -1122,7 +1122,7 @@ html, body{
 
     /* APPLICATION */
     .applications {
-        height: 165vh;
+        height: auto;
     }
     .application__wrapper{
         flex-direction: column;
@@ -1253,10 +1253,12 @@ html, body{
     .login {
         height: 100%;
     }
-
     .login__container-content{
         width: 90%;
         max-width: 100%;
+    }
+    .protocol {
+        padding-top: 100px;
     }
 }
 @media (max-width: 768px) {
@@ -1407,9 +1409,6 @@ html, body{
     .video__btn{
         box-shadow: rgb(181, 54, 37) 0px 5px 0px;
     }
-    .protocol {
-        padding-top: 0;
-    }
     .login__content {
         gap: 30px;
     }
@@ -1496,9 +1495,6 @@ html, body{
         margin-top: -10%;
         margin-bottom: -10%;
     }
-    .protocol__img{
-        margin-top: -15%;
-    }
     .guidTur_TopRight {
         top: 5%;
         right: 5%;
@@ -1540,9 +1536,6 @@ html, body{
     }
     .application__content {
         transform: scale(90%);
-    }
-    .applications{
-        margin-bottom: -25%;
     }
     .protocol__wrapper {
         padding: 0px 30px;
