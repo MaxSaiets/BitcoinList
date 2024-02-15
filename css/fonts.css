@@ -1,0 +1,21 @@
+@font-face {
+    font-family: BeVietnamPro;
+    font-weight: 900;
+    font-style: normal;
+    src: local("BeVietnamPro"), 
+        url("../fonts/BeVietnamPro-Black.woff2") format('woff2'),
+        url("../fonts/BeVietnamPro-Black.woff") format('woff'), 
+        url("../fonts/BeVietnamPro-Black.eot") format('eot');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: BeVietnamPro;
+    font-weight: 600;
+    font-style: normal;
+    src: local("BeVietnamPro"), 
+        url("../fonts/BeVietnamPro-SemiBold.woff2") format('woff2'),
+        url("../fonts/BeVietnamPro-SemiBold.woff") format('woff'), 
+        url("../fonts/BeVietnamPro-SemiBold.eot") format('eot');
+    font-display: swap;
+}
