@@ -119,6 +119,8 @@ html, body{
 
     background: radial-gradient(95.71% 95.71% at 21.3% 8.33%, #FFE1B4 24.11%, #E4951D 78.77%);
     box-shadow: 0 0 45px #E4951D; 
+
+    user-select: none;
 }
 .sphere--turquoise{
     width: 100%;
@@ -127,6 +129,8 @@ html, body{
 
     background: radial-gradient(95.71% 95.71% at 21.3% 8.33%, #C7FFF0 24.11%, #2AD6AB 78.77%);
     box-shadow: 0 0 70px #2AD6AB; 
+
+    user-select: none;
 }
 
 
