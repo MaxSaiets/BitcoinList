@@ -96,6 +96,7 @@ html, body{
     transition: width 3s cubic-bezier(.08,.45,.62,-0.52), height 3s cubic-bezier(.08,.45,.62,-0.52);
     
     user-select: none;
+    -webkit-user-select: none;
 
     z-index: 500;
 }
@@ -121,6 +122,8 @@ html, body{
     box-shadow: 0 0 45px #E4951D; 
 
     user-select: none;
+    -webkit-user-select: none;
+
 }
 .sphere--turquoise{
     width: 100%;
@@ -131,6 +134,8 @@ html, body{
     box-shadow: 0 0 70px #2AD6AB; 
 
     user-select: none;
+    -webkit-user-select: none;
+
 }
 
 
