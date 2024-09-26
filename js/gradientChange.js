@@ -11,39 +11,41 @@ let sphereTurqBackColor = "radial-gradient(95.71% 95.71% at 21.3% 8.33%, #C7FFF0
 // FilterEllipse
 let appPicFilterEllipse = document.querySelector(".application__picture-filterEllipse");
 
-//библіотекой перевірка якщо 400px width то відбувається анімація (додається стиль ripple на ньому є анімація, вона завершується і стиль видаляється, як і елемент )
-new ResizeSensor(spheresCont, function() {
+//бібліотека перевіряєє якщо 400px width то відбувається анімація (додається стиль ripple на ньому є анімація, вона завершується і стиль видаляється, як і елемент )
+new ResizeSensor(spheresArr, function() {
     spheresCont.forEach(element => {
-        if(element.offsetWidth >= 400){
-            const ripple = document.createElement('span');
+        element.querySelectorAll('.sphere--forAnim').forEach(container => {
+            if (container.offsetWidth >= 400) {
+                const ripple = document.createElement('span');
+            
+                ripple.style.width = ripple.style.height = `100px`;
+                ripple.style.left = `50%`;
+                ripple.style.top = `50%`;
+                ripple.classList.add('ripple');
     
-            ripple.style.width = ripple.style.height = `100px`;
-            ripple.style.left = `50%`;
-            ripple.style.top = `50%`;
-            ripple.classList.add('ripple');
-
-            if(element.classList.contains('sphere__contOrange'))
-                ripple.style.background = sphereOrangeBackColor;
-            else
-                ripple.style.background = sphereTurqBackColor;
-
-            element.appendChild(ripple);
-            const timeOut = getAnimationDuration(ripple);
+                if(element.classList.contains('sphere__contOrange'))
+                    ripple.style.background = sphereOrangeBackColor;
+                else
+                    ripple.style.background = sphereTurqBackColor;
     
-            element.children[0].remove();
-
-            setTimeout(() => {
-                ripple ? ripple.remove() : null;
-
-                element.remove()
-            }, timeOut);
+                element.appendChild(ripple);
+                const timeOut = getAnimationDuration(ripple);
+        
+                element.children[0].remove();
     
-            function getAnimationDuration(){
-                const aDuration = window.getComputedStyle(ripple).animationDuration;
-                return aDuration.includes('ms') ?
-                    aDuration.replace("ms", '') : aDuration.replace("s", '') * 1000;
+                setTimeout(() => {
+                    ripple ? ripple.remove() : null;
+    
+                    element.remove()
+                }, timeOut);
+        
+                function getAnimationDuration(){
+                    const aDuration = window.getComputedStyle(ripple).animationDuration;
+                    return aDuration.includes('ms') ?
+                        aDuration.replace("ms", '') : aDuration.replace("s", '') * 1000;
+                }
             }
-        }
+        });
     });
 });
 
@@ -58,7 +60,6 @@ window.addEventListener('mousemove', function(e) {
     AnimAndTurnFunc(x, y);
 
     appPicFilterEllipse.style.transform = `translate(${x * 10}px, ${y * 10}px)`;
-
 });
 
 

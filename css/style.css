@@ -91,13 +91,31 @@ html, body{
 }
 
 /* ************SPHERES************** */
-.sphere__container{
-    position: absolute;
-    transition: width 3s cubic-bezier(.08,.45,.62,-0.52), height 3s cubic-bezier(.08,.45,.62,-0.52);
-    
+
+/* sphere__container sphere__contOrange headOra_TopRight  батьківській контейнер позиція начальна без змін */
+/* sphere--orange sphere--forAnim    задається зміна позиції */
+
+.sphere--forAnim{
+    -webkit-transition: all 2s cubic-bezier(.08,.45,.62,-0.52); /* For Safari 3.1 to 6.0 */
+    transition: all 2s cubic-bezier(.08,.45,.62,-0.52);
+
     user-select: none;
     -webkit-user-select: none;
 
+}
+.sphere--forAnim:hover{
+    margin-top: -235px; /* (500 - 30) / 2 */
+    margin-left: -235px;
+
+    width: 500px;
+    height: 500px;
+
+    z-index: 999;
+}
+.sphere__container{
+    position: absolute;
+    /* transition: width 3s cubic-bezier(.08,.45,.62,-0.52), height 3s cubic-bezier(.08,.45,.62,-0.52); */
+    
     z-index: 500;
 }
 .sphere__contOrange{
@@ -109,8 +127,10 @@ html, body{
     height: 54px;
 }
 .sphere__container:hover{
-    width: 500px;
-    height: 500px;
+    /* margin-top: -235px; (500 - 30) / 2 */
+    /* margin-left: -235px; */
+    /* width: 500px; */
+    /* height: 500px; */
 }
 
 .sphere--orange{
@@ -123,7 +143,6 @@ html, body{
 
     user-select: none;
     -webkit-user-select: none;
-
 }
 .sphere--turquoise{
     width: 100%;
