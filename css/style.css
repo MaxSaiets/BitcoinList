@@ -71,31 +71,38 @@ html, body{
 }
 /* ************RIPPLE************** */
 .ripple{
-    position: absolute;
-    border-radius: 50%;
-    /* background-color: rgba(255, 255, 255, 0.3); */
-    /* border: 1px solid grey; */
-
-    z-index: 200;
-
     animation: rippleAnim 1s ease forwards;
 }
 @keyframes rippleAnim {
-    0%{
+    /* 0%{
         transform: scale(0);
     }
     100%{
         transform: scale(20);
+        opacity: 0;
+    } */
+    from {
+        transform: scale(0);
+        opacity: 1;
+    }
+    to {
+        transform: scale(4);
         opacity: 0;
     }
 }
 
 /* ************SPHERES************** */
 
-/* sphere__container sphere__contOrange headOra_TopRight  батьківській контейнер позиція начальна без змін */
+/* sphere__container sphere__contOrange headOra_TopRight  батьківській контейнер, початкова позиція без змін */
 /* sphere--orange sphere--forAnim    задається зміна позиції */
 
+.sphere--hidden {
+    display: none;
+}
 .sphere--forAnim{
+
+    z-index: 500;
+    
     -webkit-transition: all 2s cubic-bezier(.08,.45,.62,-0.52); /* For Safari 3.1 to 6.0 */
     transition: all 2s cubic-bezier(.08,.45,.62,-0.52);
 
@@ -103,7 +110,8 @@ html, body{
     -webkit-user-select: none;
 
 }
-.sphere--forAnim:hover{
+.sphere--forAnim:hover,
+.sphere--forAnim.active {
     margin-top: -235px; /* (500 - 30) / 2 */
     margin-left: -235px;
 
@@ -114,9 +122,8 @@ html, body{
 }
 .sphere__container{
     position: absolute;
-    /* transition: width 3s cubic-bezier(.08,.45,.62,-0.52), height 3s cubic-bezier(.08,.45,.62,-0.52); */
-    
-    z-index: 500;
+    width: 30px;
+    height: 30px;
 }
 .sphere__contOrange{
     width: 30px;
@@ -126,16 +133,10 @@ html, body{
     width: 54px;
     height: 54px;
 }
-.sphere__container:hover{
-    /* margin-top: -235px; (500 - 30) / 2 */
-    /* margin-left: -235px; */
-    /* width: 500px; */
-    /* height: 500px; */
-}
 
 .sphere--orange{
-    width: 100%;
-    height: 100%;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
 
     background: radial-gradient(95.71% 95.71% at 21.3% 8.33%, #FFE1B4 24.11%, #E4951D 78.77%);
