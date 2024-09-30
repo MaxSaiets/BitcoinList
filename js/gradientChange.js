@@ -12,7 +12,7 @@ let isAnim = false;
 
 // Додаємо натискання на кулю
 spheresArr.forEach(element => {
-    element.addEventListener('click', function() {
+    element.addEventListener('pointerdown', function() {
         if (element.classList.contains('active')) {
             return;
         }
