@@ -12,7 +12,7 @@ let isAnim = false;
 
 // Додаємо натискання на кулю
 spheresArr.forEach(element => {
-    element.addEventListener('click', function() {
+    element.addEventListener('pointerdown', function() {
         if (element.classList.contains('active')) {
             return;
         }
@@ -20,21 +20,14 @@ spheresArr.forEach(element => {
     });
 });
 
-
 // Анімація вибуху кулі при зміні розміру
 new ResizeSensor(spheresArr, function() {
     spheresCont.forEach(element => {
-        
-        // element.querySelectorAll('.sphere--forAnim').forEach(container => {
         element.querySelectorAll('.sphere--forAnim').forEach(container => {
             if (container.offsetWidth >= 400 && !isAnim) {
                 isAnim = true;
-
-                const rect = container.getBoundingClientRect();
-                const centerX = rect.left + rect.width / 2;
-                const centerY = rect.top + rect.height / 2;
                 
-                createRippleEffect(element, centerX, centerY);
+                createRippleEffect(element, container);
 
                 const timeOut = getAnimationDuration(container);
 
@@ -56,7 +49,12 @@ new ResizeSensor(spheresArr, function() {
 });
 
 // Функція для створення ефекту ripple
-function createRippleEffect(element, centerX, centerY) {
+function createRippleEffect(element, container) {
+
+    const rect = container.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+                
 
     const ripple = document.createElement('div');
     ripple.style.position = 'fixed';
