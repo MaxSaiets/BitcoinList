@@ -9,6 +9,7 @@ let sphereTurqBackColor = "radial-gradient(95.71% 95.71% at 21.3% 8.33%, #C7FFF0
 let appPicFilterEllipse = document.querySelector(".application__picture-filterEllipse");
 
 let isAnim = false;
+let animationQueue = []; // Черга для анімації
 
 // Додаємо натискання на кулю
 spheresArr.forEach(element => {
@@ -16,16 +17,35 @@ spheresArr.forEach(element => {
         if (element.classList.contains('active')) {
             return;
         }
-        element.classList.add('active');
+
+        animationQueue.push(element);
+        processQueue(); 
     });
 });
 
+function processQueue() {
+    
+    if (animationQueue.length > 0 || !isAnim) {
+        const element = animationQueue.shift();
+        
+        if(element){
+            element.classList.add('active');
+        }
+        
+        isAnim = true;
+        
+        setTimeout(() => {
+            processQueue(); // Обробка наступного елемента в черзі
+        }, 4000);
+    }
+    
+}
+
 // Анімація вибуху кулі при зміні розміру
 new ResizeSensor(spheresArr, function() {
-    spheresCont.forEach(element => {
+    spheresCont.forEach((element, index) => {
         element.querySelectorAll('.sphere--forAnim').forEach(container => {
-            if (container.offsetWidth >= 400 && !isAnim) {
-                isAnim = true;
+            if (container.offsetWidth >= 400 && isAnim) {
                 
                 createRippleEffect(element, container);
 
