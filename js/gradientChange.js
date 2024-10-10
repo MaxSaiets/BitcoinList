@@ -11,24 +11,35 @@ let appPicFilterEllipse = document.querySelector(".application__picture-filterEl
 let isAnim = false;
 let animationQueue = []; // Черга для анімації
 
-// Додаємо натискання на кулю
+// Додаємо натискання на кулю та наведення
 spheresArr.forEach(element => {
-    element.addEventListener('pointerdown', function() {
-        if (element.classList.contains('active')) {
-            return;
-        }
-
-        animationQueue.push(element);
-        processQueue(); 
-    });
+    element.addEventListener('pointerdown', handleSphereClick);
+    element.addEventListener('mouseenter', handleSphereHover);
 });
 
+function handleSphereClick() {
+    if (this.classList.contains('active')) {
+        return;
+    }
+
+    animationQueue.push(this);
+    processQueue();
+}
+
+function handleSphereHover() {
+    if (this.classList.contains('active')) {
+        return;
+    }
+
+    animationQueue.push(this);
+    processQueue();
+}
+
 function processQueue() {
-    
     if (animationQueue.length > 0 || !isAnim) {
         const element = animationQueue.shift();
         
-        if(element){
+        if (element) {
             element.classList.add('active');
         }
         
@@ -38,7 +49,6 @@ function processQueue() {
             processQueue(); // Обробка наступного елемента в черзі
         }, 4000);
     }
-    
 }
 
 // Анімація вибуху кулі при зміні розміру
@@ -46,7 +56,6 @@ new ResizeSensor(spheresArr, function() {
     spheresCont.forEach((element, index) => {
         element.querySelectorAll('.sphere--forAnim').forEach(container => {
             if (container.offsetWidth >= 400 && isAnim) {
-                
                 createRippleEffect(element, container);
 
                 const timeOut = getAnimationDuration(container);
@@ -54,7 +63,6 @@ new ResizeSensor(spheresArr, function() {
                 // Додаємо приховування кулі після вибуху
                 setTimeout(() => {
                     container.classList.remove('active');
-
                     container.classList.add('sphere--hidden');
                     
                     // Відновлення кулі через 2 секунди
@@ -70,11 +78,9 @@ new ResizeSensor(spheresArr, function() {
 
 // Функція для створення ефекту ripple
 function createRippleEffect(element, container) {
-
     const rect = container.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
-                
 
     const ripple = document.createElement('div');
     ripple.style.position = 'fixed';
@@ -130,7 +136,7 @@ function AnimAndTurnFunc(x, y){
         const element = spheresArr[i];
         element.style.transform = `translate(${randSignsArr[i]}${x * randNumArr[i]}px, ${randSignsArr[i]}${y * randNumArr[i]}px)`;
 
-        if(element.classList.contains("sphere--orange")) {
+        if (element.classList.contains("sphere--orange")) {
             element.style.background = `radial-gradient(95.71% 95.71% at ${x * randNumArr[i]}% ${y * randNumArr[i]}%, #FFE1B4 24.11%, #E4951D 78.77%)`;
         } else {
             element.style.background = `radial-gradient(95.71% 95.71% at ${x * randNumArr[i]}% ${y * randNumArr[i]}%, #C7FFF0 24.11%, #2AD6AB 78.77%)`;
